@@ -1,0 +1,9 @@
+# Project-specific ignores layered on top of codeswim's built-in defaults
+# (node_modules, dist, out, build, .git, .vscode, etc.).
+#
+# Syntax: gitignore-like subset — globs (* / ** / ?), trailing / for
+# directory-only, leading / to anchor at root, leading ! to negate.
+
+# Test fixtures contain deliberately broken links + invalid mermaid so the
+# analyzer's own tests can exercise its failure paths. Don't analyze them.
+fixtures/

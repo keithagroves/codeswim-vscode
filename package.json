@@ -1,0 +1,169 @@
+{
+  "name": "codeswim",
+  "displayName": "codeswim",
+  "description": "Navigate a codebase via clickable mermaid diagrams in markdown.",
+  "version": "0.1.15",
+  "publisher": "codeswim",
+  "license": "MIT",
+  "private": true,
+  "engines": {
+    "vscode": "^1.85.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/keithagroves/codeswim-vscode.git"
+  },
+  "categories": [
+    "Visualization"
+  ],
+  "keywords": [
+    "mermaid",
+    "diagram",
+    "markdown",
+    "navigation",
+    "architecture"
+  ],
+  "icon": "media/icon.png",
+  "main": "./out/extension.js",
+  "bin": {
+    "codeswim-coverage": "./out/cli.js"
+  },
+  "contributes": {
+    "commands": [
+      {
+        "command": "codeswim.showPreview",
+        "title": "codeswim: Open",
+        "icon": "$(symbol-structure)"
+      },
+      {
+        "command": "codeswim.back",
+        "title": "codeswim: Back",
+        "icon": "$(arrow-left)"
+      },
+      {
+        "command": "codeswim.revealSource",
+        "title": "codeswim: Reveal Source",
+        "icon": "$(go-to-file)"
+      },
+      {
+        "command": "codeswim.checkCoverage",
+        "title": "codeswim: Check Coverage",
+        "icon": "$(checklist)"
+      },
+      {
+        "command": "codeswim.openOverview",
+        "title": "codeswim: Open overview",
+        "icon": "$(book)"
+      },
+      {
+        "command": "codeswim.createOverview",
+        "title": "codeswim: Create overview.md"
+      },
+      {
+        "command": "codeswim.refreshTree",
+        "title": "codeswim: Refresh",
+        "icon": "$(refresh)"
+      }
+    ],
+    "viewsContainers": {
+      "activitybar": [
+        {
+          "id": "codeswim",
+          "title": "codeswim",
+          "icon": "media/activity-icon.svg"
+        }
+      ]
+    },
+    "views": {
+      "codeswim": [
+        {
+          "id": "codeswim.diagrams",
+          "name": "Diagrams",
+          "contextualTitle": "codeswim"
+        }
+      ]
+    },
+    "viewsWelcome": [
+      {
+        "view": "codeswim.diagrams",
+        "contents": "This workspace has no `overview.md` at its root.\n\nThe overview is the entry diagram codeswim navigates from.\n\n[Create overview.md](command:codeswim.createOverview)",
+        "when": "!codeswim.hasOverview"
+      }
+    ],
+    "menus": {
+      "editor/title": [
+        {
+          "command": "codeswim.showPreview",
+          "when": "resourceLangId == markdown",
+          "group": "navigation"
+        }
+      ],
+      "explorer/context": [
+        {
+          "command": "codeswim.showPreview",
+          "when": "resourceLangId == markdown",
+          "group": "navigation@10"
+        }
+      ],
+      "view/title": [
+        {
+          "command": "codeswim.openOverview",
+          "when": "view == codeswim.diagrams && codeswim.hasOverview",
+          "group": "navigation@1"
+        },
+        {
+          "command": "codeswim.checkCoverage",
+          "when": "view == codeswim.diagrams",
+          "group": "navigation@2"
+        },
+        {
+          "command": "codeswim.refreshTree",
+          "when": "view == codeswim.diagrams",
+          "group": "navigation@3"
+        }
+      ],
+      "commandPalette": [
+        {
+          "command": "codeswim.back",
+          "when": "false"
+        },
+        {
+          "command": "codeswim.revealSource",
+          "when": "false"
+        },
+        {
+          "command": "codeswim.refreshTree",
+          "when": "false"
+        }
+      ]
+    },
+    "keybindings": [
+      {
+        "command": "codeswim.showPreview",
+        "key": "ctrl+k v",
+        "mac": "cmd+k v",
+        "when": "resourceLangId == markdown && editorTextFocus"
+      }
+    ]
+  },
+  "scripts": {
+    "build": "node esbuild.config.mjs",
+    "watch": "node esbuild.config.mjs --watch",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "coverage": "node out/cli.js",
+    "package": "vsce package --no-dependencies"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.0",
+    "@types/vscode": "^1.85.0",
+    "@vscode/vsce": "^3.2.1",
+    "esbuild": "^0.24.0",
+    "typescript": "^5.7.2",
+    "vitest": "^4.1.5"
+  },
+  "dependencies": {
+    "mermaid": "^11.4.1"
+  }
+}
