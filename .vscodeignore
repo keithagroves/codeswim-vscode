@@ -14,3 +14,7 @@ media/**/*.map
 **/*.ts
 *.vsix
 icon.svg
+CLAUDE.md
+checklist.md
+install.sh
+todos.md
