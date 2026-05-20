@@ -2,7 +2,7 @@
   "name": "codeswim",
   "displayName": "codeswim",
   "description": "Navigate a codebase via clickable mermaid diagrams in markdown.",
-  "version": "0.1.15",
+  "version": "0.1.16",
   "publisher": "codeswim",
   "license": "MIT",
   "private": true,

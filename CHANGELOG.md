@@ -4,6 +4,12 @@ All notable changes to the codeswim VS Code extension are documented here.
 The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and the project uses [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.1.16] - 2026-05-20
+
+### Fixed
+- README hero now references the hi-res `media/icon.png` so the logo
+  renders with the white background on the Marketplace listing.
+
 ## [0.1.15] - 2026-05-20
 
 First public Marketplace release.
